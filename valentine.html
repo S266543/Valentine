@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .envelope {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background: #ff4d4d;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            line-height: 150px;
+            cursor: pointer;
+        }
+        .envelope::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 75px;
+            background: #ff6666;
+            clip-path: polygon(0 0, 100% 0, 50% 50%);
+        }
+        .message {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+        }
+        .message h2 {
+            color: #ff4d4d;
+        }
+        .button {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .no-button {
+            background-color: #ddd;
+            color: black;
+            position: absolute;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+        }
+        .gif-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="envelope" onclick="openMessage()">💌 To Karanraj</div>
+    <div class="message" id="message">
+        <h2>Will you be my Valentine? 💖</h2>
+        <button class="button" onclick="showGif()">Yes</button>
+        <button class="button no-button" id="noButton" onmouseover="moveNoButton()">No</button>
+    </div>
+    <div class="gif-container" id="gifContainer">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjBleXZrMHAyZ2FhY3M1bjFhZXR1cWZ2dTlvOTN6NnYxamdsbXB2cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zuusApiff3cqHiYen5/giphy.gif" alt="Cute Valentine GIF">
+    </div>
+    
+    <script>
+        function openMessage() {
+            document.querySelector('.envelope').style.display = 'none';
+            document.getElementById('message').style.display = 'block';
+        }
+        function moveNoButton() {
+            let noButton = document.getElementById('noButton');
+            let randomX = Math.floor(Math.random() * 200) - 100;
+            let randomY = Math.floor(Math.random() * 200) - 100;
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        }
+        function showGif() {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('gifContainer').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
