@@ -65,8 +65,7 @@
             background-color: #ddd;
             color: black;
             position: absolute;
-            margin-left: 10px;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
         .gif-container {
             display: none;
@@ -82,10 +81,10 @@
     <div class="message" id="message">
         <h2>Will you be my Valentine? 💖</h2>
         <button class="button" onclick="showGif()">Yes</button>
-        <button class="button no-button" id="noButton" onmouseover="moveNoButton()">No</button>
+        <button class="button no-button" id="noButton" onmouseover="moveNoButton()" ontouchstart="moveNoButton()">No</button>
     </div>
     <div class="gif-container" id="gifContainer">
-        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjBleXZrMHAyZ2FhY3M1bjFhZXR1cWZ2dTlvOTN6NnYxamdsbXB2cSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zuusApiff3cqHiYen5/giphy.gif" alt="Cute Valentine GIF">
+        <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcjBleXZrMHAyZ2FhY3M1bjFhZXR1cWZ2dTlvOTN6NnYxamdsbXB2cSZlcD12MV9pbnRlcm5naWZfYnlfaWQmY3Q9Zw/zuusApiff3cqHiYen5/giphy.gif" alt="Cute Valentine GIF">
     </div>
     
     <script>
@@ -93,12 +92,18 @@
             document.querySelector('.envelope').style.display = 'none';
             document.getElementById('message').style.display = 'block';
         }
+
         function moveNoButton() {
             let noButton = document.getElementById('noButton');
-            let randomX = Math.floor(Math.random() * 200) - 100;
-            let randomY = Math.floor(Math.random() * 200) - 100;
-            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            let screenWidth = window.innerWidth - 100;
+            let screenHeight = window.innerHeight - 100;
+            let randomX = Math.floor(Math.random() * screenWidth);
+            let randomY = Math.floor(Math.random() * screenHeight);
+            noButton.style.position = 'absolute';
+            noButton.style.left = randomX + 'px';
+            noButton.style.top = randomY + 'px';
         }
+
         function showGif() {
             document.getElementById('message').style.display = 'none';
             document.getElementById('gifContainer').style.display = 'block';
